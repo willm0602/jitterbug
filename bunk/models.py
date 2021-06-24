@@ -13,11 +13,9 @@ class User(models.Model):
         return(self.username)
 
 class Bunk(models.Model):
-    
     sender = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'sender')
     receiver = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'receiver')
     sentdate = models.DateField()
 
     def __str__(self):
-        return("From {} To {} on {}".format(self.sender, self.receiver, self.sentdate))
-    
+        return("{} bunked {} on {}".format(self.sender, self.receiver, self.sentdate))
