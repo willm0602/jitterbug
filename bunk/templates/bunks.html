@@ -10,10 +10,11 @@
 </head>
 <body>
     {% if allbunks %}
-        Bunks:
-        <div class = "bunk">
-            
-        </div>
+        Bunks:<br/>
+        {% for bunk in allbunks %}
+            {{bunk}}
+            <br/>
+        {% endfor %}
     {% else %}
         No Bunks found 😢
     {% endif %}

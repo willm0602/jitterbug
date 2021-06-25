@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 # Create your models here.
 
 USER_MAX_LEN = 50
@@ -12,10 +12,13 @@ class User(models.Model):
     def __str__(self):
         return(self.username)
 
+def datetimeToString(time: datetime):
+    return time.strftime('%D at %H:%M')
+
 class Bunk(models.Model):
     sender = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'sender')
     receiver = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'receiver')
-    sentdate = models.DateField()
+    sentdate = models.DateTimeField(auto_now_add = True, blank = False)
 
     def __str__(self):
-        return("{} bunked {} on {}".format(self.sender, self.receiver, self.sentdate))
+        return("{} bunked {} on {}".format(self.sender, self.receiver, datetimeToString(self.sentdate)))
