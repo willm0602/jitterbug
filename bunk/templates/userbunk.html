@@ -1,5 +1,28 @@
-{% for bunk in bunks %}
-	<div>
-		{{bunk}}
-	</div>
-{% endfor %}
+{% load static %}
+<link rel="stylesheet" type = "text/css" href="{% static 'bunk/style.css' %}">
+
+{% if bunks %}
+<div id = "bunkContainer">
+	<h1 id = "bunkTitle">{{name}}</h1>
+	{% for bunk in bunks %}
+		<div class="bunk {% if forloop.counter|divisibleby:2 %}b{% else %}a{% endif %}" >
+			<span class = "timestamp_{% if forloop.counter|divisibleby:2 %}b{% else %}a{% endif %}">{{bunk.sentdate.month}}/{{bunk.sentdate.day}}/{{bunk.sentdate.year}}</span>
+			<a href="/{{bunk.sender.id}}">
+				<img class = "bunkImg" src="{{bunk.sender.imgurl}}" alt="Picture of {{bunk.sender.username}}">
+			</a>
+			
+			<span class = "bonked">BONKED</span>
+
+			<a href="/{{bunk.receiver.id}}">
+				<img class = "bunkImg" src="{{bunk.receiver.imgurl}}" alt="Picture of {{bunk.receiver.username}}">
+			</a>    
+
+		</div>
+		<br/>
+	{% endfor %}
+</div>
+{% else %}
+		<div>
+			<span class = "errorText">This user has no bunks!</span>
+		</div>
+{% endif %}

@@ -13,18 +13,17 @@ class AllBunks(ListView):
     context_object_name = 'allbunks'
 
     def get_queryset(self):
-        return Bunk.objects.all()
+        return Bunk.objects.all().order_by('-sentdate')
 
-class UserBunks(ListView):
-    template_name = "userbunk.html"
-    context_object_name = "bunks"
+def userBunksView(request, userID):
+    userBunks = Bunk.objects.filter(Q(sender_id = userID) | Q(receiver_id = userID))
     
-    def get_queryset(self):
-        id = self.kwargs['pk']
-        allBunks = Bunk.objects.all()
-        print(allBunks)
-        return Bunk.objects.filter(Q(sender_id=id) | Q(receiver_id=id)).order_by('-sentdate')
-
+    context = {
+        'bunks': userBunks,
+        'userID': userID,
+        'name': User.objects.filter(id = userID)[0].username
+    }
+    return(render(request, "userbunk.html", context))
 
 def bunkView(request, sender):
     context = {
@@ -41,4 +40,9 @@ def newBunk(request, sender):
     print("Saved bunk", bunk)
     return(HttpResponseRedirect('/'))
     
+def signupForm(request):
+    return(render(request, 'signup.html'))
 
+def newUser(request):
+    print(request.body)
+    return(HttpResponseRedirect('/'))

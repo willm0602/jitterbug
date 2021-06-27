@@ -18,7 +18,10 @@ def datetimeToString(time: datetime):
 class Bunk(models.Model):
     sender = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'sender')
     receiver = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'receiver')
-    sentdate = models.DateTimeField(auto_now_add = True, blank = False)
+    sentdate = models.DateTimeField(auto_now_add = True, blank = True)
 
-    def __str__(self):
-        return("{} bunked {} on {}".format(self.sender, self.receiver, datetimeToString(self.sentdate)))
+    def getSender(self):
+        return(User.objects.filter(id = sender)[0])
+    
+    def getReceiver(self):
+        return(User.objects.filter(id = receiver)[0])
