@@ -9,6 +9,11 @@
         <link rel="stylesheet" type = "text/css" href="{% static 'bunk/bunk.css' %}">
     </head>
     <body>
+        <span>
+            <a href="/">🏠</a>
+            <a href=""></a>
+            <a href="/">👉</a>
+        </span>
         <form action="{% url 'bunk:newBunk' sender%}" method="POST">
             {% csrf_token %}
             {{username}}

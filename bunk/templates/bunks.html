@@ -7,8 +7,18 @@
     <title>Document</title>
     {% load static %}
     <link rel="stylesheet" type = "text/css" href="{% static 'bunk/style.css' %}">
+    <link rel="stylesheet" type = "text/css" href="{% static 'bunk/nav.css' %}">
 </head>
+
 <body>
+    <div id = "navbar">
+        <span>
+            <a href="/" class="icon">🏠</a>
+            <a href="" class="icon"></a>
+            <a href="/{{request.session.user}}" class="icon">👉</a>
+        </span>
+    </div>
+
     {% if allbunks %}
         <div id = "bunkContainer">
             <h1 id = "bunkTitle">Bunks</h1>
@@ -19,18 +29,16 @@
                         <img class = "bunkImg" src="{{bunk.sender.imgurl}}" alt="Picture of {{bunk.sender.username}}">
                     </a>
                     
-                    <span class = "bonked">BONKED</span>
+                    <span class = "bunked">BUNKED</span>
 
                     <a href="/{{bunk.receiver.id}}">
                         <img class = "bunkImg" src="{{bunk.receiver.imgurl}}" alt="Picture of {{bunk.receiver.username}}">
                     </a>    
 
                 </div>
-                <br/>
             {% endfor %}
         </div>
     {% else %}
         No Bunks found 😢
     {% endif %}
 </body>
-</html>

@@ -1,0 +1,56 @@
+form{
+    width: fit-content;
+    margin-left: 0;
+    display: grid;
+    width: 100%;
+    left: 5%;
+    column-count: 7;
+    position: relative;
+}
+
+img{
+    width: 10%;
+    height: auto;
+    margin-top: 0;
+    margin: 6%
+}
+
+input[type = "text"]{
+    margin: auto;
+    position: relative;
+    width: 50%;
+    left: 25%;
+    font-size: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+input[type = "submit"]{
+    width: 20%;
+    margin: auto;
+}
+
+span{
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+}
+body{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  [type=radio] + img {
+    cursor: pointer;
+  }
+  
+  [type=radio]:checked + img {
+    outline: 2px solid #f00;
+  }

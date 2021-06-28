@@ -11,14 +11,13 @@
 				<img class = "bunkImg" src="{{bunk.sender.imgurl}}" alt="Picture of {{bunk.sender.username}}">
 			</a>
 			
-			<span class = "bonked">BONKED</span>
+			<span class = "bunked">BUNKED</span>
 
 			<a href="/{{bunk.receiver.id}}">
 				<img class = "bunkImg" src="{{bunk.receiver.imgurl}}" alt="Picture of {{bunk.receiver.username}}">
 			</a>    
 
 		</div>
-		<br/>
 	{% endfor %}
 </div>
 {% else %}

@@ -8,6 +8,7 @@ body{
     height: auto;
     margin-left: 40px;
     margin-right: 40px;
+    vertical-align: middle;
 }
 
 .bunk{
@@ -17,9 +18,11 @@ body{
     text-align: center;
     display: flex;
     margin:auto;
+    margin-top: 0;
     position: relative;
     width: fit-content;
     align-items: center;
+    padding: 10px;
 }
 
 h1{
@@ -55,6 +58,7 @@ h1{
 }
 
 .a{
+    background-color: rgb(65, 63, 63);
     color: white;
 }
 
@@ -77,11 +81,11 @@ span .a{
 }
 
 #bunkContainer{
-    background-color: rgb(65, 63, 63);
     margin: auto;
     width: fit-content;
     height: fit-content;
     box-shadow: 10px 10px 5px rgb(180, 180, 180);
+    row-gap: 0;
 }
 
 #bunkTitle{
