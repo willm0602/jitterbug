@@ -5,13 +5,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" type = "text/css" href="{% static 'bunk/style.css' %}">
+        {% load static %}
+        <link rel="stylesheet" type = "text/css" href="{% static 'bunk/bunk.css' %}">
     </head>
-
     <body>
-        {{sender}}
-        <form action="{% url 'newBunk' sender%}" method="POST">
+        <form action="{% url 'bunk:newBunk' sender%}" method="POST">
             {% csrf_token %}
+            {{username}}
+            <br/>
             {% for target in targets%}
                 <input type = "radio" name = "target" id = "target{{forloop.counter}}" value = "{{target.id}}"/>
                 <label for = "target{{forloop.counter}}">

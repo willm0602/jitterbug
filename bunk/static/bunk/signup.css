@@ -1,0 +1,28 @@
+form{
+    display: flex;
+    flex-direction: column;
+    top: 30%;
+    position: relative;
+    
+}
+
+input{
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    font-size: 40px;
+    text-align: left;
+    text-align: center;
+}
+
+#newUserForm{
+    box-shadow: 10px 10px 5px rgb(180, 180, 180);
+    top: 40px;
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+
+br{
+    height: 40px;
+}

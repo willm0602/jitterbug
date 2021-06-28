@@ -28,6 +28,7 @@ def userBunksView(request, userID):
 def bunkView(request, sender):
     context = {
         'sender': sender,
+        'username': User.objects.all().filter(pk = sender)[0].username,
         'targets': User.objects.all().filter(
             ~Q(id = sender)
         )
@@ -44,5 +45,11 @@ def signupForm(request):
     return(render(request, 'signup.html'))
 
 def newUser(request):
-    print(request.body)
-    return(HttpResponseRedirect('/'))
+    print(request.POST)
+    context = {'error': "You must enter a profile picture and username"}
+    if request.POST['profpic'] and request.POST['username']:
+        user = User(username = request.POST['username'], imgurl = request.POST['profpic'])
+        user.save()
+        return(HttpResponseRedirect('/'))
+    else:
+        return(HttpResponseRedirect("/signup"))
