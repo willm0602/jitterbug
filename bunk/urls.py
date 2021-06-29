@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^bunk/$', bunkView, name = 'bunk'),
 
     #/signup, allows the users to register 
-    url(r'^register/$', newUser, name = 'newuser'),
+    url(r'^register/$', newUser, name = 'register'),
 
     #/login logs in a user
     url(r'^login/', login, name = 'login'),
