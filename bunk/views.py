@@ -29,38 +29,33 @@ def userBunksView(request, userID):
 #view to allow a user to send a bunk to another user
 def bunkView(request):
     sender = request.session['id']
-    context = {
-        'sender': sender,
-        'username': User.objects.all().filter(pk = sender)[0].username,
-        'targets': User.objects.all().filter(
-            ~Q(id = sender)
-        )
-    }
-    return(render(request, 'bunk.html', context))
-
-#view to handle new bunk requests from bunkView
-#TODO: replace with single view with get/post request handler
-#TODO: replace sender with session variable
-def newBunk(request, sender):
-    bunk = Bunk(sender_id = sender, receiver_id = request.POST['target'])
-    bunk.save()
-    return(HttpResponseRedirect('/'))
-    
-#view to handle users signing up for app
-def signupForm(request):
-    return(render(request, 'signup.html'))
+    if request.method == "GET":
+        context = {
+            'sender': sender,
+            'username': User.objects.all().filter(pk = sender)[0].username,
+            'targets': User.objects.all().filter(
+                ~Q(id = sender)
+            )
+        }
+        return(render(request, 'bunk.html', context))
+    elif request.method == "POST":
+        bunk = Bunk(sender_id = sender, receiver_id = request.POST['target'])
+        bunk.save()
+        return(HttpResponseRedirect('/'))
 
 #view to handle new users registering
-#TODO: merge with signupForm and handle POST/GET methods
 def newUser(request):
-    context = {'error': "You must enter a profile picture and username"}
-    if request.POST['profpic'] and request.POST['username']:
-        user = User(username = request.POST['username'], imgurl = request.POST['profpic'])
-        user.save()
-        request.session['user'] = user.id
-        return(HttpResponseRedirect('/'))
-    else:
-        return(HttpResponseRedirect("/signup"))
+    if request.method == "POST":
+        context = {'error': "You must enter a profile picture and username"}
+        if request.POST['profpic'] and request.POST['username']:
+            user = User(username = request.POST['username'], imgurl = request.POST['profpic'])
+            user.save()
+            request.session['id'] = user.id
+            return(HttpResponseRedirect("/"))
+        else:
+            return(HttpResponseRedirect("/signup"))
+    elif request.method == "GET":
+        return(render(request, 'signup.html'))
 
 #view to handle users logging in
 def login(request):
