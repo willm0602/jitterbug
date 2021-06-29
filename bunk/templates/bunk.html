@@ -7,21 +7,17 @@
         <title>Document</title>
         {% load static %}
         <link rel="stylesheet" type = "text/css" href="{% static 'bunk/bunk.css' %}">
+        <link rel="stylesheet" type = "text/css" href="{% static 'bunk/nav.css' %}">
     </head>
     <body>
-        <span>
-            <a href="/">🏠</a>
-            <a href=""></a>
-            <a href="/">👉</a>
-        </span>
+        <h1>{{username}}</h1>
         <form action="{% url 'bunk:bunk' %}" method="POST">
             {% csrf_token %}
-            {{username}}
             <br/>
             {% for target in targets%}
-                <input type = "radio" name = "target" id = "target{{forloop.counter}}" value = "{{target.id}}"/>
                 <label for = "target{{forloop.counter}}">
-                    {{target.username}}
+                    <input type = "radio" name = "target" id = "target{{forloop.counter}}" value = "{{target.id}}"/>
+                    <img src="{{target.imgurl}}" alt="{{target.username}}">
                 </label>
                 <br/>
             {% endfor %}

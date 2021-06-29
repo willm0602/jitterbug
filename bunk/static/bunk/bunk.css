@@ -1,0 +1,31 @@
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio] + img {
+    cursor: pointer;
+}
+
+[type=radio]:checked + img {
+    outline: 2px solid #f00;
+}
+
+img{
+    height: 64px;
+    width: 64px;
+}
+
+form{
+    display: flex;
+    flex-wrap: wrap;
+    column-count: 25;
+}
+
+body{
+    display: block;
+    width: 100%;
+    position: relative;
+}
