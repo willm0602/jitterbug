@@ -43,23 +43,19 @@ def bunkView(request):
         bunk.save()
         return(HttpResponseRedirect('/'))
 
-
-    
-#view to handle users signing up for app
-def signupForm(request):
-    return(render(request, 'signup.html'))
-
 #view to handle new users registering
-#TODO: merge with signupForm and handle POST/GET methods
 def newUser(request):
-    context = {'error': "You must enter a profile picture and username"}
-    if request.POST['profpic'] and request.POST['username']:
-        user = User(username = request.POST['username'], imgurl = request.POST['profpic'])
-        user.save()
-        request.session['user'] = user.id
-        return(HttpResponseRedirect('/'))
-    else:
-        return(HttpResponseRedirect("/signup"))
+    if request.method == "POST":
+        context = {'error': "You must enter a profile picture and username"}
+        if request.POST['profpic'] and request.POST['username']:
+            user = User(username = request.POST['username'], imgurl = request.POST['profpic'])
+            user.save()
+            request.session['id'] = user.id
+            return(HttpResponseRedirect("/"))
+        else:
+            return(HttpResponseRedirect("/signup"))
+    elif request.method == "GET":
+        return(render(request, 'signup.html'))
 
 #view to handle users logging in
 def login(request):
