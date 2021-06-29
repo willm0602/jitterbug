@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" type = "text/css" href="{% static 'bunk/bunk.css' %}">
+<link rel="stylesheet" type = "text/css" href="{% static 'bunk/allusers.css' %}">
+
+<h1>All users!</h1>
+
+<div id = "people">
+    {% for user in users%}
+        <a href="/{{user.id}}">
+            <img src = "{{user.imgurl}}">
+        </a>
+    {% endfor %}
+
+</div>

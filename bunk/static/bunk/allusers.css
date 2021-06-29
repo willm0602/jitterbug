@@ -1,0 +1,10 @@
+img{
+    width: 128px;
+    height: 128px;
+    margin: 32px;
+}
+
+#people{
+    display: flex;
+    flex-wrap: wrap;
+}
