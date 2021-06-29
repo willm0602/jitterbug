@@ -17,7 +17,7 @@ class AllBunks(ListView):
 
 #view to display all bunks for a specific user
 def userBunksView(request, userID):
-    userBunks = Bunk.objects.filter(Q(sender_id = userID) | Q(receiver_id = userID))
+    userBunks = Bunk.objects.filter(Q(sender_id = userID) | Q(receiver_id = userID)).order_by('-sentdate')
     
     context = {
         'bunks': userBunks,
