@@ -29,22 +29,21 @@ def userBunksView(request, userID):
 #view to allow a user to send a bunk to another user
 def bunkView(request):
     sender = request.session['id']
-    context = {
-        'sender': sender,
-        'username': User.objects.all().filter(pk = sender)[0].username,
-        'targets': User.objects.all().filter(
-            ~Q(id = sender)
-        )
-    }
-    return(render(request, 'bunk.html', context))
+    if request.method == "GET":
+        context = {
+            'sender': sender,
+            'username': User.objects.all().filter(pk = sender)[0].username,
+            'targets': User.objects.all().filter(
+                ~Q(id = sender)
+            )
+        }
+        return(render(request, 'bunk.html', context))
+    elif request.method == "POST":
+        bunk = Bunk(sender_id = sender, receiver_id = request.POST['target'])
+        bunk.save()
+        return(HttpResponseRedirect('/'))
 
-#view to handle new bunk requests from bunkView
-#TODO: replace with single view with get/post request handler
-#TODO: replace sender with session variable
-def newBunk(request, sender):
-    bunk = Bunk(sender_id = sender, receiver_id = request.POST['target'])
-    bunk.save()
-    return(HttpResponseRedirect('/'))
+
     
 #view to handle users signing up for app
 def signupForm(request):

@@ -14,7 +14,7 @@
             <a href=""></a>
             <a href="/">👉</a>
         </span>
-        <form action="{% url 'bunk:newBunk' sender%}" method="POST">
+        <form action="{% url 'bunk:bunk' %}" method="POST">
             {% csrf_token %}
             {{username}}
             <br/>
