@@ -3,7 +3,7 @@
 
 <div id = "newUserForm">
 
-    <form action = "{% url 'register' %}" method = "POST">
+    <form action = "{% url 'bunk:register' %}" method = "POST">
         {% csrf_token %}
         <input type="text" name="username" id="usernameField" placeholder="Username">
         <input type = "text" name = "profpic" id = "imgURL" placeholder = "profpicURL">

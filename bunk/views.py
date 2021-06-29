@@ -17,13 +17,20 @@ class AllBunks(ListView):
 
 #view to display all bunks for a specific user
 def userBunksView(request, userID):
+    print(userID)
     userBunks = Bunk.objects.filter(Q(sender_id = userID) | Q(receiver_id = userID))
-    
-    context = {
-        'bunks': userBunks,
-        'userID': userID,
-        'name': User.objects.filter(id = userID)[0].username
-    }
+    context = {}
+    if len(userBunks):
+        context = {
+            'bunks': userBunks,
+            'userID': userID,
+            'name': User.objects.filter(id = userID)[0].username
+        }
+    else:
+        context = {
+            'bunks': userBunks,
+            'userID': userID,
+        }
     return(render(request, "userbunk.html", context))
 
 #view to allow a user to send a bunk to another user
@@ -77,9 +84,9 @@ def login(request):
         context['error'] = "Invalid user"
     return(render(request, "login.html", context))
 
-#view to get all users
-def allUsers(request):
-    users = {}
-    for u in User.objects.all():
-        users[u] = {'username': u.username, 'imgurl': u.imgurl}
-    return(HttpResponse(users))
+
+class AllUsers(ListView):
+    template_name = 'allUsers.html'
+    context_object_name = 'users'
+    def get_queryset(self):
+        return(User.objects.order_by('username'))

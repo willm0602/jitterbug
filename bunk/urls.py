@@ -1,5 +1,5 @@
 from django.conf.urls import url 
-from .views import AllBunks, bunkView, userBunksView, newUser, login, allUsers
+from .views import AllBunks, bunkView, userBunksView, newUser, login, AllUsers
 
 app_name = 'bunk'
 
@@ -20,5 +20,5 @@ urlpatterns = [
     url(r'^login/', login, name = 'login'),
 
     #/users gets all users
-    url(r'^users/$', allUsers, name = 'allUsers')
+    url(r'^users/$', AllUsers.as_view(), name = 'allUsers')
 ]
