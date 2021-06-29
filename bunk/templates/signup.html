@@ -2,7 +2,13 @@
 <link rel="stylesheet" type = "text/css" href="{% static 'bunk/signup.css' %}">
 
 <div id = "newUserForm">
-    <form action = "{% url 'bunk:newuser' %}" method = "POST">
+    {% if {{error}} %}
+        <div class = "error-message">
+            {{error}}
+        </div>
+    {% endif %}
+
+    <form action = "{% url 'newuser' %}" method = "POST">
         {% csrf_token %}
         <input type="text" name="username" id="usernameField" placeholder="Username">
         <input type = "text" name = "profpic" id = "imgURL" placeholder = "profpicURL">

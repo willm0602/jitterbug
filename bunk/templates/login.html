@@ -18,10 +18,17 @@
     function filterUsers(users, key)
     {
         key = key.toLowerCase();
-        return(users.filter((u) => {
+        let filter = users.filter((u) => {
             var username = u.username.toLowerCase();
             return(username.includes(key))
-        }))
+        })
+
+        if(filter.length > 8)
+        {
+            filter = filter.slice(0, 8);
+        }
+
+        return(filter);
     }
 
     function updateUsers()
