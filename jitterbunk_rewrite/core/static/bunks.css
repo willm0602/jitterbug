@@ -1,0 +1,14 @@
+.bunk-img
+{
+    width: 128px;
+}
+
+.bunk{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.bunk-label{
+    margin: 0 32px;
+}

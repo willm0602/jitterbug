@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="{% static 'globals.css' %}">
+        <link rel="stylesheet" href="{% static 'signup.css' %}">
+
+    </head>
+    <body>
+        <form class="signup-form" action="/api/signup" method="POST">
+            <h1 class="signup-title">Signup</h1>
+            {% csrf_token %}
+            <input class="signup-input" type="text" name="name" id="name" placeholder="name">
+
+            <input class="signup-input" type="text" name="img_url" id="img_url" placeholder="image url">
+            
+            <input class="signup-button" type="submit" value="Submit">
+
+        </form>
+    </body>
+</html>

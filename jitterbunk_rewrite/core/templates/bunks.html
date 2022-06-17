@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'globals.css' %}">
+    <link rel="stylesheet" href="{% static 'bunks.css' %}">
+    
+</head>
+<body>
+    <h1 class="bunks-title">{{name}}</h1>
+    {% if name is not 'All' %}
+        {% for bunk in bunks %}
+            <div class="bunk">
+                <a href="/bunks/{{bunk.from_user.id}}">
+                    <img class="bunk-sender bunk-img" src="{{bunk.from_user.img}}" alt="{{bunk.from_user.name}}">
+                </a>
+                <span class="bunk-label">on {{bunk.date}} bunked</span>
+                
+                <a href="/bunks/{{bunk.to_user.id}}">
+                    <img class="bunk-sender bunk-img" src="{{bunk.to_user.img}}" alt="{{bunk.to_user.name}}">
+                </a>
+            </div>
+            {% endfor %}
+    {% endif %}
+</body>
+</html>

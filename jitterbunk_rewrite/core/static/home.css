@@ -1,0 +1,23 @@
+.home-title{
+    width: 100%;
+    text-align: center;
+}
+
+.home-nav{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-left: 35%;
+}
+
+.home-nav a{
+    color: var(--selective-yellow);
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.home-nav a:hover{
+    color: var(--light-cornflower-blue);
+}

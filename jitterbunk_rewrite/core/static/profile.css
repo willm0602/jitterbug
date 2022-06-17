@@ -1,0 +1,14 @@
+.profile-img{
+    width: 256px;
+    border-radius: 25%;
+}
+
+.signout-btn{
+    background-color: transparent;
+    border-color: white;
+    border-style: solid;
+    width: 256px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
